@@ -1,8 +1,373 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>feedmI</title>
+    <title>FM Main Page</title>
+    <meta charset="utf-8">
+    <meta name="viewpotr" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style>
+
+      .container-fluid {
+        padding: 0px;
+        margin: 0px 25px;
+      }
+
+      .well {
+        padding: 10px;
+        margin: 0px;
+      }
+
+      .col-xs-3, .col-xs-6 {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .search-box {
+        margin-top: 8px;
+      }
+      /* enable relative positioning */
+      .inner-addon {
+        position: relative;
+      }
+
+      /* style icon */
+      .inner-addon .glyphicon {
+        position: absolute;
+        padding: 10px;
+        pointer-events: none;
+      }
+
+      /* align icon */
+      .left-addon .glyphicon  {
+        left:  0px;
+      }
+
+      /* add padding  */
+      .left-addon input  {
+        padding-left:  30px;
+      }
+
+      /* Notification Item */
+      .notify-item {
+        display: -webkit-flex;
+        display: flex;
+        align-items: baseline;
+        border-bottom: 1px solid gray;
+        padding-top: 15px;
+        i {
+          margin-right: 5px;
+        }
+        p {
+        font-size: 14px;
+        }
+      }
+
+      /* Make and pulled post */
+      .make-pulled-post {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        felx-direction: column;
+        width: 100%;
+      }
+
+      .avatar-make-post {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        felx-direction: row;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        border-bottom: 1px solid gray;
+      }
+
+      .avatar-img {
+        width: 15%;
+        height: 60%;
+        margin-top: 40px;
+        img {
+          width: 80px;
+          height: 100px;
+          background-color: white;
+        }
+      }
+
+      .make-post {
+        -webkit-flex-direction: column;
+        felx-direction: column;
+        width: 85%;
+        height: 100%;
+        margin: 0px;
+      }
+
+      .avatar-name {
+        width: 100%;
+        height: 10%;
+        margin: 5px;
+      }
+
+      .post-text {
+        width: 99%;
+        height: 110px;
+        margin: 3px;
+      }
+
+      .post-action {
+        display: flex;
+        width: 99%;
+        margin: 5px 3px;
+        .checkbox-action {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          width: 80%;
+          .checkbox-inline {
+            margin: 2px 2px;
+            flex-basis: 15%;
+          }
+        }
+        .submit-action {
+          width: 20%;
+        }
+      }
+
+      /* Pulled Post Item */
+      .pulled-post-icon-text {
+        display: -webkit-flex;
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        border-bottom: 1px solid gray;
+        padding-top: 15px;
+        i {
+          margin-right: 5px;
+        }
+        p {
+        font-size: 14px;
+        }
+      }
+
+      /* Message Item */
+      .message-item {
+        display: flex;
+        border-bottom: 1px solid gray;
+        padding-top: 15px;
+        .msg-avatar-nic-name {
+          dislay: flex;
+          .fa-user {
+          }
+          p {
+            font-size: 12px;
+            text-align: center;
+          }
+        }
+        .msg-text-icon {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          margin-left: 5px;
+          p {
+            font-size: 14px;
+          }
+          .social-icon {
+            align-self: flex-end;
+            margin-bottom: 18px;
+          }
+        }
+      }
+    </style>
   </head>
   <body>
+    <!-- Navigation section -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-3">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#home">feedM!</a>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="inner-addon left-addon">
+              <i class="glyphicon glyphicon-search"></i>
+              <input type="text" class="form-control search-box" placeholder="Search">
+            </div>
+          </div>
+          <div class="col-xs-3">
+          <button type="button" class="navbar-toggle glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#mynavbar">
+          </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#mi">mI</a></li>
+                <li><a href="#feed">Feed</a></li>
+                <li><a href="#calendar">Calendar</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Dynamic page sections -->
+    <div class="jumbotron">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- Notifications section -->
+          <div class="col-xs-3">
+            <div class="well">
+              <!--<form>-->
+                <div class="form-group">
+                  <select class="form-control">
+                    <option>Select notification source</option>
+                    <option>Facebook</option>
+                    <option>Twitter</option>
+                    <option>LinkedIn</option>
+                  </select>
+                </div>
+              <!--</form>-->
+              <div class="notify-item">
+                <i class="fa fa-facebook-square"></i>
+                <p>Voluptatibus assumenda dolore praesentium! Nobis.</p>
+              </div>
+              <div class="notify-item">
+                <i class="fa fa-github-square"></i>
+                <p>Gravida exercitationem aliquet, possimus repellendus.</p>
+              </div>
+              <div class="notify-item">
+                <i class="fa fa-linkedin-square"></i>
+                <p>Rhoncus incidunt do litora urna.</p>
+              </div>
+              <div class="notify-item">
+                <i class="fa fa-twitter-square"></i>
+                <p>Netus eu tempore ab? Velit.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Make and pulled post section -->
+          <div class="col-xs-6">
+            <div class="well">
+              <div class="make-pulled-post">
+                <div class="avatar-make-post">
+                  <div class="avatar-img">
+                    <img src="" class="img-responsive" alt="M! Avatar">
+                  </div>
+                  <div class="make-post">
+                    <div class="avatar-name">
+                      Avatar, Avatar Jr.
+                    </div>
+                    <div class="post-text">
+                      <textarea class="form-control" rows="5" id="" placeholder="What's new?"></textarea>
+                    </div>
+                    <div class="post-action">
+                      <div class="checkbox-action">
+                        <label class="checkbox-inline"><input type="checkbox" value=""><i class="fa fa-facebook"></i></label>
+                        <label class="checkbox-inline"><input type="checkbox" value=""><i class="fa fa-twitter"></i></label>
+                        <label class="checkbox-inline"><input type="checkbox" value=""><i class="fa fa-github"></i></label>
+                        <label class="checkbox-inline"><input type="checkbox" value=""><i class="fa fa-linkedin"></i></label>
+                        <label class="checkbox-inline"><input type="checkbox" value=""><i class="fa fa-youtube"></i></label>
+                        <label class="checkbox-inline"><input type="checkbox" value=""><i class="fa fa-instagram"></i></label>
+                        <label class="checkbox-inline"><input type="checkbox" value=""><i class="fa fa-pinterest"></i></label>
+                        <label class="checkbox-inline"><input type="checkbox" value=""><i class="fa fa-slack"></i></label>
+                        <label class="checkbox-inline"><input type="checkbox" value=""><i class="fa fa-google-plus"></i></label>
+                      </div>
+                      <div class="submit-action">
+                        <button type="button" class="btn btn-default pull-right">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pulled-post">
+                  <div class="pulled-post-icon-text post-item">
+                    <i class="fa fa-facebook-square fa-2x"></i>
+                    <p>Cursus faucibus, cum lacinia quos per expedita, aspernatur! Enim aliquet facilis maecenas, aliquam autem excepturi rhoncus inventore! Nostrum, corporis ducimus conubia a, facilis platea nisi dolor habitant blandit illum? Cubilia, iaculis cubilia tempora semper mollit, turpis? Reprehenderit ipsa ex vehicula laboris sociosqu. Commodo, maiores animi? Dolorem per aperiam risus facilisi.</p>
+                  </div>
+                  <div class="pulled-post-icon-text post-item">
+                    <i class="fa fa-github-square fa-2x"></i>
+                    <p>Cupiditate metus enim, facilisi, gravida nesciunt. Scelerisque atque condimentum, aspernatur, ante aptent, vulputate pellentesque veniam! Harum bibendum diam, sollicitudin ac possimus hymenaeos distinctio eveniet! Corporis tempor. Voluptatibus ridiculus curae totam? Congue justo temporibus habitasse facilisis pharetra, magnis duis mus aliquam, vel veritatis quisque sapiente, iste consequat porta eos? Eget rerum.</p>
+                  </div>
+                  <div class="pulled-post-icon-text post-item">
+                    <i class="fa fa-linkedin-square fa-2x"></i>
+                    <p>Irure saepe amet exercitationem quas malesuada! Praesent inceptos. Id esse tempus sollicitudin? Odio vestibulum in? Cillum incididunt diam eum mauris! Reiciendis, totam? Ea, nostra possimus nonummy. Ad aenean nascetur ullam, lobortis soluta repellat exercitationem eu, consectetur assumenda facere, exercitationem erat magnam quasi vivamus a necessitatibus magnam quod platea, necessitatibus pharetra.</p>
+                  </div>
+                  <div class="pulled-post-icon-text">
+                    <i class="fa fa-twitter-square fa-2x"></i>
+                    <p>Augue proin placeat natus consequuntur litora, aperiam adipisci, praesent? Aenean tincidunt unde eu sint incididunt platea placerat incidunt qui maecenas felis varius condimentum pharetra, arcu volutpat vel fugit, eu aliquam similique nemo eiusmod quaerat repellendus explicabo aliqua tempor consectetur blanditiis mattis habitant fames, taciti, ac, cumque voluptatibus doloremque suspendisse turpis.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Message section -->
+          <div class="col-xs-3">
+            <div class="well">
+              <!--<form>-->
+                <div class="form-group">
+                  <select class="form-control" id="message">
+                    <option>Select message source</option>
+                    <option>Facebook</option>
+                    <option>Twitter</option>
+                    <option>LinkedIn</option>
+                  </select>
+                </div>
+              <!--</form>-->
+              <div class="message-item">
+                <div class="msg-avatar-nic-name">
+                  <i class="fa fa-user fa-3x"></i>
+                  <p>Bob</p>
+                </div>
+                <div class="msg-text-icon">
+                  <p>Ad? Consectetur euismod elit temporibus quos ultricies montes risus corrupti.</p>
+                  <i class="fa fa-twitter-square social-icon"></i>
+                </div>
+              </div>
+              <div class="message-item">
+                <div class="msg-avatar-nic-name">
+                  <i class="fa fa-user fa-3x"></i>
+                  <p>Fred</p>
+                </div>
+                <div class="msg-text-icon">
+                  <p>Gravida exercitationem aliquet, possimus repellendus.</p>
+                  <i class="fa fa-github-square social-icon"></i>
+                </div>
+              </div>
+              <div class="message-item">
+                <div class="msg-avatar-nic-name">
+                  <i class="fa fa-user fa-3x"></i>
+                  <p>Chad</p>
+                </div>
+                <div class="msg-text-icon">
+                  <p>Anim cursus pariatur necessitatibus provident exercitationem, quas earum, curae rhoncus.</p>
+                  <i class="fa fa-linkedin-square social-icon"></i>
+                </div>
+              </div>
+              <div class="message-item">
+                <div class="msg-avatar-nic-name">
+                  <i class="fa fa-user fa-3x"></i>
+                  <p>Frank</p>
+                </div>
+                <div class="msg-text-icon">
+                  <p>Voluptatibus assumenda dolore praesentium! Nobis.</p>
+                  <i class="fa fa-facebook-square social-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
+
 </html>
+
+<div class="col-xs-3">
+  <form role="form">
+    <div class="form-group has-feedback">
+      <input type="text" class="form-control input-sm" placeholder="Search" />
+      <i class="form-control-feedback glyphicon glyphicon-search"></i>
+    </div>
+  </form>
+</div>
